@@ -34,6 +34,7 @@ jobs:
         dotnet test
 
     - name: lint
+      working-directory: DotnetTemplate.Web
       run: |
         npm run lint
         
