@@ -10,7 +10,7 @@ jobs:
       name: checkout
 
 
-    - name: build-c#
+    - name: build with .Net
       run: |
         dotnet build
         cd DotnetTemplate.Web
@@ -24,9 +24,18 @@ jobs:
         npm install
         npm run build
 
-    - name: test
+    - name: npm test
+      working-directory: DotnetTemplate.Web
+      run: |
+        npm t
+
+    - name: .Net test
       run: |
         dotnet test
+
+    - name: lint
+      run: |
+        npm run lint
         
 
     - name: Hello world       # Name of step
