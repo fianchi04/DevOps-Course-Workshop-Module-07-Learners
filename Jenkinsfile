@@ -20,16 +20,16 @@ pipeline {
             agent {
                 docker { image 'node:16-alpine' }
             }
-            dir {
-                path '/DotnetTemplate.Web'
-            }
 
             steps {
                 echo 'Building Node..'
-                sh 'npm install'
-                sh 'npm run build'
-                sh 'npm t'
-                sh 'npm run lint'
+                dir ('DotnetTemplate.Web'){
+                    sh 'npm install'
+                    sh 'npm run build'
+                    sh 'npm t'
+                    sh 'npm run lint'
+                }
+                
             }
         }
     }
