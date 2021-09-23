@@ -14,10 +14,20 @@ jobs:
       run: |
         dotnet build
         cd DotnetTemplate.Web
-        npm install
-        npm run build
+        
         cd ..
         dotnet test
+
+    - name: build with npm
+      working-directory: DotnetTemplate.Web #future steps will default back to project root unless specified
+      run: |
+        npm install
+        npm run build
+
+    - name: test
+      run: |
+        dotnet test
+        
 
     - name: Hello world       # Name of step
       uses: actions/hello-world-javascript-action@v1.1 # Name of the action. This uses https://github.com/actions/hello-world-javascript-action
