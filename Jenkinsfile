@@ -26,10 +26,24 @@ pipeline {
                 dir ('DotnetTemplate.Web'){
                     sh 'npm install'
                     sh 'npm run build'
+
+                }
+                
+            }
+        }
+
+        stage('Node Test') {
+            agent {
+                docker { image 'node:16-alpine' }
+            }
+
+            steps {
+                echo 'Running Node tests...'
+                dir ('DotnetTemplate.Web'){
                     sh 'npm t'
                     sh 'npm run lint'
                 }
-                
+
             }
         }
     }
